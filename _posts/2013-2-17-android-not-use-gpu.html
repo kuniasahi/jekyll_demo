@@ -24,21 +24,21 @@ published_date: 2013-2-17
 <p>
   在方案配置目录下，修改方案的主配置文件，增加下面这个属性，我的是CPU是Allwinner A31,也就是修改fiber-xxxx.mk这个文件
 </p>
-     <div style="background:#fdfdfd;color:black;"><u>Makefile语言</u>: <a href="http://fayaa.com/code/">高亮代码由发芽网提供</a></div>
+     <div style="background:#fdfdfd;color:black;"><u>Makefile语言</u>: </div>
      <div style="font-family: &quot;[object HTMLOptionElement]&quot;,&quot;Courier New&quot;,&quot;monospace&quot;; color: rgb(0, 0, 0);" class="source"><span style="color: rgb(0, 0, 0);">PRODUCT_PROPERTY_OVERRIDES</span> <span style="color: rgb(0, 0, 0);">+=</span> <span style="color: rgb(0, 0, 255);">\</span><br> &nbsp; &nbsp;debug.force.software.rending<span style="color: rgb(0, 0, 0);">=</span><span style="color: rgb(0, 0, 0);">true</span><br></div>
 
 <p>
   去掉GPU库，这个按照方案不同，A31是通过mk文件PRODUCT_COPY_FILES的，也就是注释掉下面的：
 </p>
 
-     <div style="background:#fdfdfd;color:black;"><u>Makefile语言</u>: <a href="http://fayaa.com/code/">高亮代码由发芽网提供</a></div>
+     <div style="background:#fdfdfd;color:black;"><u>Makefile语言</u>: </div>
      <div style="font-family: &quot;[object HTMLOptionElement]&quot;,&quot;Courier New&quot;,&quot;monospace&quot;; color: rgb(0, 0, 0);" class="source"><span style="color: rgb(0, 136, 0); font-style: italic;">#egl</span><br><span style="color: rgb(0, 136, 0); font-style: italic;">#PRODUCT_COPY_FILES += \</span><br><span style="color: rgb(0, 136, 0); font-style: italic;"># &nbsp; &nbsp; &nbsp; device/softwinner/fiber-common/egl/pvrsrvctl:system/vendor/bin/pvrsrvctl \</span><br><span style="color: rgb(0, 136, 0); font-style: italic;"># &nbsp; &nbsp; &nbsp; device/softwinner/fiber-common/egl/libusc.so:system/vendor/lib/libusc.so \</span><br><span style="color: rgb(0, 136, 0); font-style: italic;"># &nbsp; &nbsp; &nbsp; device/softwinner/fiber-common/egl/libglslcompiler.so:system/vendor/lib/libglslcompiler.so \</span><br><span style="color: rgb(0, 136, 0); font-style: italic;"># &nbsp; &nbsp; &nbsp; device/softwinner/fiber-common/egl/libIMGegl.so:system/vendor/lib/libIMGegl.so \</span><br><span style="color: rgb(0, 136, 0); font-style: italic;"># &nbsp; &nbsp; &nbsp; device/softwinner/fiber-common/egl/libpvr2d.so:system/vendor/lib/libpvr2d.so \</span><br><span style="color: rgb(0, 136, 0); font-style: italic;"># &nbsp; &nbsp; &nbsp; device/softwinner/fiber-common/egl/libpvrANDROID_WSEGL.so:system/vendor/lib/libpvrANDROID_WSEGL.so \</span><br><span style="color: rgb(0, 136, 0); font-style: italic;"># &nbsp; &nbsp; &nbsp; device/softwinner/fiber-common/egl/libPVRScopeServices.so:system/vendor/lib/libPVRScopeServices.so \</span><br><span style="color: rgb(0, 136, 0); font-style: italic;"># &nbsp; &nbsp; &nbsp; device/softwinner/fiber-common/egl/libsrv_init.so:system/vendor/lib/libsrv_init.so \</span><br><span style="color: rgb(0, 136, 0); font-style: italic;"># &nbsp; &nbsp; &nbsp; device/softwinner/fiber-common/egl/libsrv_um.so:system/vendor/lib/libsrv_um.so \</span><br><span style="color: rgb(0, 136, 0); font-style: italic;"># &nbsp; &nbsp; &nbsp; device/softwinner/fiber-common/egl/libEGL_POWERVR_SGX544_115.so:system/vendor/lib/egl/libEGL_POWERVR_SGX544_115.so \</span><br><span style="color: rgb(0, 136, 0); font-style: italic;"># &nbsp; &nbsp; &nbsp; device/softwinner/fiber-common/egl/libGLESv1_CM_POWERVR_SGX544_115.so:system/vendor/lib/egl/libGLESv1_CM_POWERVR_SGX544_115.so \</span><br><span style="color: rgb(0, 136, 0); font-style: italic;"># &nbsp; &nbsp; &nbsp; device/softwinner/fiber-common/egl/libGLESv2_POWERVR_SGX544_115.so:system/vendor/lib/egl/libGLESv2_POWERVR_SGX544_115.so \</span><br><span style="color: rgb(0, 136, 0); font-style: italic;"># &nbsp; &nbsp; &nbsp; device/softwinner/fiber-common/egl/gralloc.sun6i.so:system/vendor/lib/hw/gralloc.sun6i.so \</span><br><span style="color: rgb(0, 136, 0); font-style: italic;"># &nbsp; &nbsp; &nbsp; device/softwinner/fiber-common/egl/egl.cfg:system/lib/egl/egl.cfg</span><br></div>
 
 <p>
   在BoardConfig.mk中添加：
 </p>  
 
-     <div style="background:#fdfdfd;color:black;"><u>Makefile语言</u>: <a href="http://fayaa.com/code/">高亮代码由发芽网提供</a></div>
+     <div style="background:#fdfdfd;color:black;"><u>Makefile语言</u>: </div>
      <div style="font-family: &quot;[object HTMLOptionElement]&quot;,&quot;Courier New&quot;,&quot;monospace&quot;; color: rgb(0, 0, 0);" class="source"><span style="color: rgb(0, 0, 0);">USE_HW_COMPOSER</span> <span style="color: rgb(0, 0, 0);">:=</span> <span style="color: rgb(0, 0, 0);">false</span><br></div>
 
 <p>
