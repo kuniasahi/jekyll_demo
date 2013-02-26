@@ -1,44 +1,44 @@
----
+﻿---
 layout: post
 author: yuguoxu
 author_url: http://yuguoxusblog.tk/
 author_email: yokuniasahi@gmail.com
-title: u ubuntu phone os��д������
+title: u ubuntu phone os烧写与体验
 published_date: 2013-2-26
 ---
 
 <p>
- ubuntu phone osϵͳ����֮�󣬱���hacker�ľ��񣬹����ó��Լ��ֺ���Ӳ��google�Ķ�����ʵ�飬�������Ķ��ӣ�
- �Ѿ�����������ʵ��Ū����ȥ�����ˣ����������Լ�������android4.2�Ĵ��������дͨ����Ҳ���õ����κ�ˢ�����⡣
- ���ǹ��ϵ�½����ߣ��
+ ubuntu phone os系统出了之后，本着hacker的精神，果断拿出自己又黑又硬的google四儿子做实验，苦命的四儿子，
+ 已经被我做各种实验弄得死去活来了，不过仗着自己下载了android4.2的代码编译烧写通过，也不用担心任何刷机问题。
+ 于是果断登陆官网撸起。
 </p>
 <p>
- �ϻ�����˵�����չ������ķ������������������<a href="https://wiki.ubuntu.com/Touch/Install">https://wiki.ubuntu.com/Touch/Install</a>.
+ 废话不多说，按照官网给的方法，网络链接在这里：<a href="https://wiki.ubuntu.com/Touch/Install">https://wiki.ubuntu.com/Touch/Install</a>.
 </p>
 <p>
-������һ��Դ��
+先增加一个源：
 </p>
 <p>
 sudo add-apt-repository ppa:phablet-team/tools
 </p>
 <p>
-�ٸ���һ����д����
+再更新一下烧写工具
 </p>
 <p>
 sudo apt-get update
 sudo apt-get install phablet-tools android-tools-adb android-tools-fastboot
 </p>
 <p>
- ADB��fastboot��Ϊ��װ��SDK��û�и����ˣ���ֻ������phablet-tools��û�뵽��Ȼ�Ҳ���Դ��������һ�ѣ�ԭ��xda��Ҳ��������ͬ�������⣬
- ԭ����û��11.04��Դ����ȥ����ֻ��12�Ժ�ģ������ڹ�˾�ĵ���װ����12.04�ģ����ǹ����ڹ�˾���£��������������ˡ�
+ ADB和fastboot因为安装过SDK就没有更新了，我只更新了phablet-tools，没想到竟然找不到源，到网上一搜，原来xda上也有人遇到同样的问题，
+ 原因是没有11.04的源（我去！）只有12以后的，好在在公司的电脑装的是12.04的，于是果断在公司更新，终于下载下来了。
 </p>
 <p>
- ���Ű��ֻ����ϣ�����
+ 接着把手机接上，运行
  phablet-flash -b
 </p>
 <p>
- ���ǾͿ�ʼ���ض�Ӧ�����ˣ�phabletӦ����һ��python�Ľű���ͨ��adb��ȡandroid��ro�����жϻ��ͣ�Ȼ�����ض�Ӧ��image�ļ��������ؼ�¼������
- ��Ҫ�����������ĸ��ļ�
+ 于是就开始下载对应镜像了，phablet应该是一个python的脚本，通过adb读取android的ro属性判断机型，然后下载对应的image文件，从下载记录来看，
+ 主要下载了以下四个文件
 </p>
 <p>
  quantal-preinstalled-armel+mako.zip 
@@ -53,58 +53,58 @@ sudo apt-get install phablet-tools android-tools-adb android-tools-fastboot
  quantal-preinstalled-system-armel+mako.img 
 </p>
 <p>
- ��������Կ����������ļ���ʽ��androidһ��������ext4�ľ����ļ�����Ҳ����˵����phablet�����Լ���fastboot�ֶ���дҲ�ǿ��Եģ������ÿ�����
- ȷ����д˳����У���֮������ɻ����Զ�reboot-bootloader��ʼ��д��ע�����nand flashҪ�����������ˢ������ͯЬӦ�ö���İ���ɡ�
+ 从这里可以看出，镜像文件格式和android一样，都是ext4的镜像文件，这也就是说不用phablet工具自己用fastboot手动烧写也是可以的，不过得看代码
+ 确定烧写顺序才行，总之下载完成机器自动reboot-bootloader开始烧写，注意机器nand flash要解锁，这对于刷过机的童鞋应该都不陌生吧。
 </p>
 <p>
-��д��ɺ������ʼ������boot�׶λ���google��logo�����žͺ����ˣ���Ҫ���˼�������Ϳ�ʼ���ֺ�ɫ�������棨�Ǻǣ������android���ǿ���ˣ���
-adb�������ϣ�����adb logcat�������ã�adb shell���ϵ���userȨ�ޣ���adb logcat�������ܶ��ӡ��android��ͬ��������surfacefinger�Ĵ�ӡ���Ǻǡ�
+烧写完成后机器开始启动，boot阶段还是google的logo，接着就黑屏了，但要不了几秒机器就开始出现红色的主界面（呵呵，相对于android算是快的了），
+adb可以连上，就连adb logcat都可以用，adb shell连上的是user权限，从adb logcat来看，很多打印和android相同，甚至有surfacefinger的打印，呵呵。
 </p>
 <p>
- �տ�ʼ���������н��涯���ˣ��������Ϳ������ˣ����滹����������������û�дﵽ��������������Ϊ��һֱ����C��C++д�ĳ�����Ч���Ͽ϶���java���׵ġ�
- ����Ч�����£�
+ 刚开始起来机器有界面动不了，但几秒后就可以用了，界面还算是流畅，但还是没有达到想象中那样，因为我一直觉得C、C++写的程序在效率上肯定比java靠谱的。
+ 界面效果如下：
 </p>
 <img src="/images/ubuntuphone1.png"
      style="float:left;"
      alt="ubuntuphone1"
      title="ubuntuphone1" />
 <p>
- ������������
+ 这个是主界面的
 </p>
 <img src="/images/ubuntuphone2.png"
      style="float:left;"
      alt="ubuntuphone2"
      title="ubuntuphone2" />	
 <p>
-�ܶ�Ӧ�ö������ã��������ֻ��ЩĪ�������ͼƬ�������û��Ӧ����20���׸���һ��Ҳ�Ų���
+很多应用都不能用，这个音乐只有些莫名其妙的图片，点击了没反应，我20多首歌曲一首也放不了
 </p>	 
 <img src="/images/ubuntuphone3.png"
      style="float:left;"
      alt="ubuntuphone3"
      title="ubuntuphone3" />	
 <p>
-�����ϷҲ�治��
+这个游戏也玩不了
 </p>	
  <img src="/images/ubuntuphone4.png"
      style="float:left;"
      alt="ubuntuphone4"
      title="ubuntuphone4" />	
 <p>
-˳��˵һ�£�ϵͳû�н�ͼ���ߣ�Ҳ��֧��������+��Դ���Ľ�ͼ��ʽ�����е�ͼ����ͨ��screencap��ͼ�ģ����Ǹ�android��shell����
-������screencap -p /sdcard/xxx.png���������������֤��ʹ���˲��ٵ�android���룬�������ðײ����ء�
-�������������ã������ܼ�Ҳû��̫�๦�ܣ����ץ��һ�ţ���Ȼ���԰��ĵ��Ķ���ץ�������ѵ�û����Ӳ�����ӣ�
+顺便说一下，系统没有截图工具，也不支持音量键+电源键的截图方式，所有的图都是通过screencap截图的，这是个android的shell工具
+命令是screencap -p /sdcard/xxx.png，这个工具能运行证明使用了不少的android代码，不过不用白不用呢。
+意外的是相机能用，不过很简单也没有太多功能，随便抓了一张，居然可以把拍到的东西抓下来，难道没有用硬件叠加？
 </p>	 
  <img src="/images/ubuntuphone5.png"
      style="float:left;"
      alt="ubuntuphone5"
      title="ubuntuphone5" />
 <p>
-��UI������������̳���ubuntuϵ�еķ�񣬻��Ǻ�Ư���ģ���sexual��cool��ͬʱ�ں����罻Ԫ�أ�������facebook��twritter��
-��Ȼ���������쳯�����ã��㶮�ġ�������UI����˵��ʲôfirefoxos MeeGo���׶��ˣ����ϵͳ�����Ѿ�ȷ�����и߶��г��ˣ�
-ͬʱubuntu�����Ŀ�����Ա�Ƚ϶࣬�ر���C��C++�Ŀ�������������һ������Ա��ͬʱ��η����Ĺ̼��������ֻ��Ļ���pad�ģ�
-ͬʱ��֧��pc���豸����������ubuntu��Ұ�����ǱȽϴ�ģ����ϵͳ�϶�����ֻ��Ϊһ��hacker��ϵͳ
+从UI的设计来看，继承了ubuntu系列的风格，还是很漂亮的，很sexual和cool，同时融合了社交元素，集成了facebook和twritter，
+当然这两样在天朝不能用，你懂的。单独从UI上来说比什么firefoxos MeeGo靠谱多了，这款系统基本已经确定走中高端市场了，
+同时ubuntu社区的开发人员比较多，特别是C、C++的开发环境会吸引一部分人员，同时这次发布的固件不仅有手机的还有pad的，
+同时还支持pc与设备互联，相信ubuntu的野望还是比较大的，这款系统肯定不会只作为一款hacker的系统
 </p>	 
 <p>
-    �Ժ��дһЩ�������android�Ķ�����ѧϰ·�ϣ�������㣡
+    以后会写一些更多关于android的东西，学习路上，与君共勉！
 </p>
 
