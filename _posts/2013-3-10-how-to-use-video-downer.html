@@ -1,0 +1,46 @@
+---
+layout: post
+author: yuguoxu
+author_url: http://yuguoxusblog.tk/
+author_email: yokuniasahi@gmail.com
+title: 一种下载各大网站视频的新方法
+published_date: 2013-2-17
+---
+
+<p>
+	信息时代，天朝的视频网站也越来越多，真的不能不说生活在天朝最大的福利就是这个了，不用深夜守候电视机追新番，反正版权神马地我们在
+	清朝的时候已经交过了，扯远了，不过即使如此，各个网站的视频的下载还是比较蛋疼，因为某些番不是很期待就不用上澄空，贴吧去求种子了，
+	想直接在网站下载，但是各个网站都自己搞个专门客户端，不仅难用不说，还没有ubuntu下的客户端，这让我等情何以堪。
+</p>
+
+<p>
+	视频网站的原理也是把视频流下载到本地播放的，既然能播放就能下载，在github闲逛之际，果然让我发现这个好东西
+</p>
+
+<p>
+	<a href="https://github.com/iambus/youku-lixian">https://github.com/iambus/youku-lixian</a>
+</p>
+<p>
+	这个项目是一系列python脚本，用于下载天朝各大视频网站的视频，从youku，tudou到acfun、bilibili都有（作者一定是个动漫宅，呵呵），支持范围很广。
+	于是果断clone之，git clone git://github.com/iambus/youku-lixian.git，没有安装git的童鞋也可以直接点击下载源码:
+	<a href="https://github.com/iambus/youku-lixian/downloads">https://github.com/iambus/youku-lixian/downloads</a>
+	
+</p>
+<p>
+	项目是python语言的，没有安装python的童鞋要先安装python，而且按照项目说的和python3.0可能不兼容，所以需要安装python 2.7
+	<a href="http://www.python.org/getit/">http://www.python.org/getit/</a>
+</p>
+<p>
+	接着在windows cmd控制台切换到工程的目录下，或者是在ubuntu的shell下，运行：
+	python youku.py 视频链接地址
+	工具就开始下载了，下载时实际上是把单个单个的flv流或MP4流文件下载下来，然后再合并成一个总的文件。
+</p>
+<p>
+	从源码上来看，代码的各个模块分工得很好，确实很佩服作者，以网站开头的文件负责解析url和json，common.py负责下载，不过目前只支持单线程下载，flv_join.py
+	和mp4_join.py负责将单个单个的文件合并，这部分代码包含了不少视频编解码的知识，可能对搞视频的童鞋有用，反正我就是当天书啦，从url获取视频地址
+	的方法各个网站都不同，估计也是通过http抓包得到的。
+</p>
+<p>
+    以后会写一些更多关于android的东西，学习路上，与君共勉！
+</p>
+
